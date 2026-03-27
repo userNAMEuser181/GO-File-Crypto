@@ -22,4 +22,4 @@ I will soon make test script that encrypts/decrypts files with others file conte
 with bad content (that my library should catch) and with good content (to verify if it can encrypt normal files).
 
 ## Documentation
-Follow to folder "Documentation" (there nothing right now).
+Follow to folder "Documentation".
