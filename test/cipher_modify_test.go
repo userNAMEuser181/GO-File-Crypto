@@ -1,0 +1,36 @@
+package test
+
+import (
+	"encoding/base64"
+	"testing"
+
+	FCLib "github.com/userNAMEuser181/GO-File-Crypto/File_Crypto_Library"
+)
+
+func TestCipherModify(t *testing.T) {
+	file_key := "rW0afp8yNhI0iSIrGkOo9QDMVqhlngl77dFkdSSF2jQ="
+	key_blob, err := base64.StdEncoding.DecodeString(file_key)
+	if err != nil {
+		return
+	}
+
+	aes_key := FCLib.AES_Key{
+		Key: key_blob,
+	}
+
+	f_e_content := []byte{
+		0xC0, 0xF0, 0xC4, 0x78, 0x01, 0x5E, 0xAD, 0xAD, 0x0F, 0x7F, 0x30, 0x86, 0xDF, 0x00, 0x10, 0x00,
+		0x00, 0xC1, 0x26, 0x7A, 0xB6, 0x95, 0xFA, 0x17, 0xE8, 0x11, 0xF8, 0x48, 0x61, 0xD2, 0xE9, 0x88,
+		0xB3, 0xC6, 0x48, 0x27, 0xED, 0xEA, 0x9F,
+	}
+
+	cryptedFile := FCLib.Crypt_File{
+		Path:   "./test_cipher.bin",
+		AESkey: aes_key,
+	}
+
+	// Modifying cipher at postion 19 to 0x27
+	f_e_content[19] = 0x27
+
+	run_decryption(t, f_e_content, cryptedFile)
+}
