@@ -18,8 +18,11 @@ import "github.com/userNAMEuser181/GO-File-Crypto"
 And you imported my library! How to use it i will show in documentation.
 
 ## How to test this project
-I will soon make test script that encrypts/decrypts files with others file content,
-with bad content (that my library should catch) and with good content (to verify if it can encrypt normal files).
+You need complete requirements and after write in console this
+```bash
+go test github.com/userNAMEuser181/GO-File-Crypto/... -v
+```
+And it show output of test scripts.
 
 ## Documentation
 Follow to folder "Documentation".
