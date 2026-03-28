@@ -20,7 +20,7 @@ And you imported my library! How to use it i will show in documentation.
 ## How to test this project
 You need complete requirements and after write in console this
 ```bash
-go test github.com/userNAMEuser181/GO-File-Crypto/... -v
+go test github.com/userNAMEuser181/GO-File-Crypto/test/ -v
 ```
 And it show output of test scripts.
 
