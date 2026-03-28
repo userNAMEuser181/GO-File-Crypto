@@ -15,7 +15,7 @@ After add to your code
 ```Go
 import "github.com/userNAMEuser181/GO-File-Crypto"
 ```
-And you imported my library! How to use it i will write in documentation.
+And you imported my library! How to use it i will show in documentation.
 
 ## How to test this project
 I will soon make test script that encrypts/decrypts files with others file content,
