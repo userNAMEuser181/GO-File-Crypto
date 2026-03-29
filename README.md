@@ -11,9 +11,10 @@ To install my library you need execute
 ```bash
 go get github.com/userNAMEuser181/GO-File-Crypto
 ```
-After add to your code
+And if you need import my library to code,
+then add to your code
 ```Go
-import "github.com/userNAMEuser181/GO-File-Crypto"
+import "github.com/userNAMEuser181/GO-File-Crypto/File_Crypto_Library"
 ```
 And you imported my library! How to use it i will show in documentation.
 
