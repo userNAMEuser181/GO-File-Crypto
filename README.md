@@ -25,5 +25,9 @@ go test github.com/userNAMEuser181/GO-File-Crypto/test/ -v
 ```
 And it show output of test scripts.
 
+## TODO
+I want rewrite functions Write_Header and Read_Header, so they will read encrypted header and after decrypt it and return 
+decrypted raw header or writing encrypted raw header.
+
 ## Documentation
 Follow to folder "Documentation".
