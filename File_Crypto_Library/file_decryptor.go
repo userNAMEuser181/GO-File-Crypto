@@ -70,7 +70,15 @@ func Decrypt_File_HKDF(cryptFile Crypt_File) error {
 		return err
 	}
 
-	f_out, err := os.Create(cryptFile.Path + ".decrypted") // Output file (plaintext content)
+	var out_path string
+
+	if cryptFile.OUT_Path == "" {
+		out_path = cryptFile.Path + ".decrypted"
+	} else {
+		out_path = cryptFile.OUT_Path
+	}
+
+	f_out, err := os.Create(out_path) // Output file (plaintext content)
 	if err != nil {
 		return err
 	}
@@ -137,7 +145,15 @@ func Decrypt_File_Counter(cryptFile Crypt_File) error {
 		return err
 	}
 
-	f_out, err := os.Create(cryptFile.Path + ".decrypted") // Output file (plaintext content)
+	var out_path string
+
+	if cryptFile.OUT_Path == "" {
+		out_path = cryptFile.Path + ".decrypted"
+	} else {
+		out_path = cryptFile.OUT_Path
+	}
+
+	f_out, err := os.Create(out_path) // Output file (plaintext content)
 	if err != nil {
 		return err
 	}

@@ -27,8 +27,16 @@ func Encrypt_File_Counter(cryptFile Crypt_File) error {
 		return err
 	}
 
-	f_out, err := os.Create(cryptFile.Path + ".crypted") // Output file
-	if err != nil {                                      // File Opening err
+	var out_path string
+
+	if cryptFile.OUT_Path == "" {
+		out_path = cryptFile.Path + ".crypted"
+	} else {
+		out_path = cryptFile.OUT_Path
+	}
+
+	f_out, err := os.Create(out_path) // Output file
+	if err != nil {
 		return err
 	}
 
@@ -114,8 +122,16 @@ func Encrypt_File_HKDF(cryptFile Crypt_File) error {
 		return err
 	}
 
-	f_out, err := os.Create(cryptFile.Path + ".crypted") // Output file
-	if err != nil {                                      // File Opening err
+	var out_path string
+
+	if cryptFile.OUT_Path == "" {
+		out_path = cryptFile.Path + ".crypted"
+	} else {
+		out_path = cryptFile.OUT_Path
+	}
+
+	f_out, err := os.Create(out_path) // Output file
+	if err != nil {
 		return err
 	}
 

@@ -15,7 +15,8 @@ type AES_Key struct {
 }
 
 type Crypt_File struct {
-	Path      string
+	OUT_Path  string  // Output file path
+	Path      string  // Input file path
 	AESkey    AES_Key // VERY NEEDED PARAMETER
 	ChunkSize int
 	UseIV     bool // If useIV is true, then will be called function that generates chunk nonce from iv and counter mode,
