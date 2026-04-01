@@ -53,10 +53,13 @@ func main(){
 
 ### Pros
 HKDF-SHA256 is good and widely used.
+
 Salt: Salt is adding uniqueness.
+
 Security: it making harder to crack file
 ### Cons
 Probably High CPU using: HKDF (or HMAC-SHA256) adds extra computation, so it may increase CPU using.
+
 Slow: High CPU using can to slow process of encrypting/decrypting file.
 
 ### With HKDF:
