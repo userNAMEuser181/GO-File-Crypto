@@ -8,13 +8,8 @@ import (
 )
 
 func Read_Header(file *os.File) []byte {
-<<<<<<< HEAD
-	// Reading raw 17 bytes (4 bytes magic + 1 byte version + 8 bytes IV + 4 bytes ChunkSize)
-	raw := [17]byte{}
-=======
 	// Reading raw 53 bytes (4 bytes magic + 1 byte version + 12 bytes nonce + 4 bytes ChunkSize + 32 bytes HKDF_Salt)
 	raw := [53]byte{}
->>>>>>> 534ce9f (lib v0.2)
 	r, err := file.Read(raw[:])
 	if err != nil {
 		return nil
@@ -44,14 +39,6 @@ func Parse_Raw_Header(raw []byte) (*Crypt_File_Header, error) {
 	// Version and magic are ok, parsing main data and putting it to Header struct
 	Header := Crypt_File_Header{}
 
-<<<<<<< HEAD
-	IV := raw[5:13]
-
-	chunkSize := binary.BigEndian.Uint32(raw[13:17])
-
-	Header.IV = IV
-	Header.ChunkSize = chunkSize
-=======
 	Nonce := raw[5:17]
 
 	chunkSize := binary.BigEndian.Uint32(raw[17:21])
@@ -61,7 +48,6 @@ func Parse_Raw_Header(raw []byte) (*Crypt_File_Header, error) {
 	Header.Nonce = Nonce
 	Header.ChunkSize = chunkSize
 	Header.Salt = Salt
->>>>>>> 534ce9f (lib v0.2)
 
 	return &Header, nil
 }
@@ -73,19 +59,11 @@ func Parse_Header(header *Crypt_File_Header) ([]byte, error) {
 		return nil, fmt.Errorf("Error occurred, error name: [FILE_CRYPTO_INVALID_PARSE_HEADER_CALL]")
 	}
 
-<<<<<<< HEAD
-	if header.IV == nil {
-		return nil, fmt.Errorf("Error occurred, error name: [FILE_CRYPTO_INVALID_PARSE_HEADER_CALL]")
-	}
-
-	raw := [17]byte{}
-=======
 	if header.Nonce == nil {
 		return nil, fmt.Errorf("Error occurred, error name: [FILE_CRYPTO_INVALID_PARSE_HEADER_CALL]")
 	}
 
 	raw := [53]byte{}
->>>>>>> 534ce9f (lib v0.2)
 
 	// Writing four bytes of magic
 	for i := 0; i < 4; i++ {
@@ -96,36 +74,24 @@ func Parse_Header(header *Crypt_File_Header) ([]byte, error) {
 	raw[4] = FILE_CRYPTO_VERSION
 
 	// Writing IV to raw
-<<<<<<< HEAD
-	copy(raw[5:13], header.IV)
-=======
 	copy(raw[5:17], header.Nonce)
->>>>>>> 534ce9f (lib v0.2)
 
 	// Converting ChunkSize to binary format
 	ChunkSize_binary := [4]byte{}
 	binary.BigEndian.PutUint32(ChunkSize_binary[:], header.ChunkSize)
 
 	// Writing ChunkSize_binary to raw
-<<<<<<< HEAD
-	copy(raw[13:], ChunkSize_binary[:])
-=======
 	copy(raw[17:21], ChunkSize_binary[:])
 
 	// Writing HKDF_Salt to raw
 	copy(raw[21:], header.Salt)
->>>>>>> 534ce9f (lib v0.2)
 
 	// Raw header builded, returning raw header
 	return raw[:], nil
 }
 
 func Write_Header(raw []byte, file *os.File) bool {
-<<<<<<< HEAD
-	// Writing raw 17 bytes (4 bytes magic + 1 byte version + 8 bytes IV + 4 bytes ChunkSize)
-=======
 	// Writing raw 53 bytes (4 bytes magic + 1 byte version + 12 bytes nonce + 4 bytes ChunkSize + 32 bytes HKDF_Salt)
->>>>>>> 534ce9f (lib v0.2)
 	_, err := file.Write(raw)
 	if err != nil {
 		return false

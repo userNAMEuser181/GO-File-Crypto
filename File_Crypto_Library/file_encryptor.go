@@ -7,9 +7,6 @@ import (
 	aesgcmcrypto "github.com/userNAMEuser181/GO-File-Crypto/File_Crypto_Library/aes_gcm_crypt"
 )
 
-<<<<<<< HEAD
-func Encrypt_File(cryptFile Crypt_File) error {
-=======
 // Main encrypt file function
 func Encrypt_File(cryptFile Crypt_File) error {
 	if cryptFile.UseIV {
@@ -23,7 +20,6 @@ func Encrypt_File(cryptFile Crypt_File) error {
 
 // Encrypt files functions with other options
 func Encrypt_File_Counter(cryptFile Crypt_File) error {
->>>>>>> 534ce9f (lib v0.2)
 	// WARNING: cryptFile.AESkey.Nonce is ignored, here script generating IV (8 bytes) what helps to creating nonces(12 bytes)
 
 	f_in, err := os.Open(cryptFile.Path) // Input file
@@ -56,27 +52,16 @@ func Encrypt_File_Counter(cryptFile Crypt_File) error {
 		return fmt.Errorf("Error occurred, error name: [FILE_CRYPTO_NO_FILE_CONTENT]")
 	}
 
-<<<<<<< HEAD
-	IV, code := aesgcmcrypto.GenNonce(8)
-=======
 	IV, code := aesgcmcrypto.GenNonce(12)
->>>>>>> 534ce9f (lib v0.2)
 
 	if code != 0 {
 		return nil
 	}
-<<<<<<< HEAD
-
-	// Building Crypted File Header struct
-	Header := Crypt_File_Header{
-		IV:        IV,
-=======
 	nil_salt := []byte{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	// Building Crypted File Header struct
 	Header := Crypt_File_Header{
 		Nonce:     IV,
 		Salt:      nil_salt,
->>>>>>> 534ce9f (lib v0.2)
 		ChunkSize: uint32(cryptFile.ChunkSize),
 	}
 
@@ -98,9 +83,6 @@ func Encrypt_File_Counter(cryptFile Crypt_File) error {
 		}
 
 		// Calculating nonce for current chunk_index
-<<<<<<< HEAD
-		nonce := get_nonce_of_chunk(IV, uint32(plain_chunk.Index))
-=======
 		nonce := get_nonce_of_chunk_Counter(IV, uint32(plain_chunk.Index))
 
 		// Encrypting chunk (AAD at moment nil)
@@ -195,7 +177,6 @@ func Encrypt_File_HKDF(cryptFile Crypt_File) error {
 
 		// Calculating nonce for current chunk_index
 		nonce, err := get_nonce_of_chunk_HKDF(Nonce_base, HKDF_Salt, plain_chunk.Index)
->>>>>>> 534ce9f (lib v0.2)
 
 		// Encrypting chunk (AAD at moment nil)
 		cipher_chunk, errno := aesgcmcrypto.Encrypt(cryptFile.AESkey.Key, nonce, plain_chunk.Data, nil)
