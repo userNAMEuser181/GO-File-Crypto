@@ -7,7 +7,7 @@ import (
 	FCLib "github.com/userNAMEuser181/GO-File-Crypto/File_Crypto_Library"
 )
 
-func TestDecryptionNormalData(t *testing.T) {
+func TestNonceModify(t *testing.T) {
 	file_key := "1fQf0ufYSEAc9/mBh9IXYYDFPcEMtLUB9es0dwSXKZg="
 	key_blob, err := base64.StdEncoding.DecodeString(file_key)
 	if err != nil {
@@ -27,9 +27,12 @@ func TestDecryptionNormalData(t *testing.T) {
 	}
 
 	cryptedFile := FCLib.Crypt_File{
-		Path:   "./test_normal.bin",
+		Path:   "./test_nonce.bin",
 		AESkey: aes_key,
 	}
+
+	// Modifying header at postion 6 to 0xFF
+	f_e_content[6] = 0xFF
 
 	run_decryption(t, f_e_content, cryptedFile)
 }
